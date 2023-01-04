@@ -10,7 +10,7 @@
     <label>Enter Player Name</label>
     <input type="text" name="name" value="" required>
     <label>Enter League Name</label>
-    <select name="league_name">
+    <select name="league_name" id="league_name" onchange="league()">
       <option value="ligue 1">Ligue 1</option>
       <option value="Premier League">Premier League</option>
       <option value="Primeira Liga">Primeira Liga</option>
@@ -35,16 +35,37 @@
       <option value="2022">2022</option>
     </select>
     <label>Enter Country Name</label>
-    <select name="country">
+    <select name="country" id="country">
       <option value="France">France</option>
-      <option value="England">England</option>
-      <option value="Portugal">Portugal</option>
-      <option value="Italy">Italy</option>
-      <option value="Germany">Germany</option>*
-      <option value="Spain">Spain</option>
+      <option value="England" >England</option>
+      <option value="Portugal" >Portugal</option>
+      <option value="Italy" >Italy</option>
+      <option value="Germany" >Germany</option>
+      <option value="Spain" >Spain</option>
     </select>
     <input type="submit" value="Submit">
 </form>
+
+<script type="text/javascript">
+  function league() {
+     var select_country = document.getElementById("country")
+     var select_league = document.getElementById("league_name")
+     if (select_league.value == "ligue 1"){
+      select_country.value = "France"
+     }else if(select_league.value == "Premier League"){
+      select_country.value = "England"
+     }else if(select_league.value == "Primeira Liga"){
+      select_country.value = "Portugal"
+     }else if(select_league.value == "Serie A"){
+      select_country.value = "Italy"
+    }else if(select_league.value == "Bundesliga"){
+      select_country.value = "Germany"
+    }else if(select_league.value == "La Liga"){
+      select_country.value = "Spain"
+    }
+
+  }
+</script>
 
 </body>
 </html>

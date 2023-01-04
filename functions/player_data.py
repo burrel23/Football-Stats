@@ -16,6 +16,7 @@ def get_league_id(league_name,country):
     conn.request("GET", "/leagues?name="+league_name+"&country="+country, headers=headers)
     # conn.request("GET", "/leagues?name=ligue%201&country=france", headers=headers)
     res = conn.getresponse()
+    print(res)
     data = res.read()
     data = data.decode("utf-8")
     info = json.loads(data)
@@ -44,5 +45,6 @@ def player(name,season,league_id):
     print(info)
     return info["response"][0]
     print(info["response"][0])
+
 
 
