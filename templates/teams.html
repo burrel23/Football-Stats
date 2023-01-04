@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title>Teams Stats</title>
 </head>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
 <body>
 <h1>Teams Stats</h1>
-<form action="shortenurl">
+<form action="team_stats">
     <label>Enter Team Name</label>
     <input type="text" name="team_name" value="" required>
     <label>Enter League Name</label>
@@ -26,6 +31,37 @@
       <option value="2020">2020</option>
     </select>
     <input type="submit" value="Submit">
+
+    <br><br>
+
+    <label>Examples:</label>
+     <table>
+  <tr>
+    <th>Team Name</th>
+    <th>League Name</th>
+    <th>Season</th>
+  </tr>
+  <tr>
+    <td>Grenoble</td>
+    <td>Ligue 2</td>
+    <td>2020</td>
+  </tr>
+  <tr>
+    <td>Manchester United</td>
+    <td>Premier League</td>
+    <td>2016</td>
+  </tr>
+  <tr>
+    <td>Atletico Madrid</td>
+    <td>La Liga</td>
+    <td>2011</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td>...</td>
+    <td>...</td>
+  </tr>
+</table>
 </form>
 
 </body>
