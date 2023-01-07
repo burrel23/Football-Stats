@@ -57,6 +57,7 @@ def team_stats():
     except:
         return render_template("error.html")
 
+
 @app.route('/players', methods = ["POST","GET"])
 def players_stats():
     try:
