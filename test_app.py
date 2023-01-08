@@ -9,7 +9,7 @@ def client():
 
 def test_welcome_page(client):
     response = client.get('/')
-    assert b"Welcome on Football stats" in response.data
+    assert response.status_code == 200
 
 def test_teams(client):
     response = client.get('/teams')

@@ -5,7 +5,7 @@
     <title>Players Stats</title>
 </head>
 <body>
-<h1><center>Stats About {{ name }} </center></h1>
+<h1><center> {{data.player.name}} Stats  </center></h1>
 <table>
   <thead>
       <tr>
@@ -27,16 +27,59 @@
 
           </td>
       </tr>
-      <tr>
-        <!-- <th colspan="2">Statistics</th> -->
-        <td>
-          <br><b>Appearences</b> : {{data.statistics[0].games.appearences}}
-          <br><b>Minutes Played </b> : {{data.statistics[0].games.minutes}}
-          <br><b>Goals</b> : {{data.statistics[0].goals.total}}
-          <br><b>Assists</b> : {{data.statistics[0].goals.assists}}
 
-        </td>
-      </tr>
+      {% if data.statistics[0].games.position == "Goalkeeper" %}
+        <tr>
+          <!-- <th colspan="2">Statistics</th> -->
+          <td>
+            <br><b>Appearences</b> : {{data.statistics[0].games.appearences}}
+            <br><b>Minutes Played </b> : {{data.statistics[0].games.minutes}}
+            <br><b>Lineups</b> : {{data.statistics[0].games.lineups}}
+            <br><b>Saves</b> : {{data.statistics[0].goals.saves}}
+            <br><b>Yellow Cards</b> : {{data.statistics[0].cards.yellow}}
+            <br><b>Red Cards</b> : {{data.statistics[0].cards.red}}
+
+          </td>
+        </tr>
+      {% elif data.statistics[0].games.position == "Defender" %}
+          <tr>
+            <!-- <th colspan="2">Statistics</th> -->
+            <td>
+              <br><b>Appearences</b> : {{data.statistics[0].games.appearences}}
+              <br><b>Minutes Played </b> : {{data.statistics[0].games.minutes}}
+              <br><b>Lineups</b> : {{data.statistics[0].games.lineups}}
+              <br><b>Tackles</b> : {{data.statistics[0].tackles.total}}
+              <br><b>Blocks</b> : {{data.statistics[0].tackles.blocks}}
+              <br><b>Interceptions</b> : {{data.statistics[0].tackles.interceptions}}
+              <br><b>Passes</b> : {{data.statistics[0].passes.total}}
+              <br><b>Fouls</b> : {{data.statistics[0].fouls.committed}}
+              <br><b>Yellow Cards</b> : {{data.statistics[0].cards.yellow}}
+              <br><b>Red Cards</b> : {{data.statistics[0].cards.red}}
+    
+            </td>
+          </tr>
+      {% else %}
+        <tr>
+          <!-- <th colspan="2">Statistics</th> -->
+          <td>
+            <br><b>Appearences</b> : {{data.statistics[0].games.appearences}}
+            <br><b>Minutes Played </b> : {{data.statistics[0].games.minutes}}
+            <br><b>Lineups</b> : {{data.statistics[0].games.lineups}}
+            <br><b>Goals</b> : {{data.statistics[0].goals.total}}
+            <br><b>Penalty Goals</b> : {{data.statistics[0].penalty.scored}}
+            <br><b>Assists</b> : {{data.statistics[0].goals.assists}}
+            <br><b>Passes</b> : {{data.statistics[0].passes.total}}
+            <br><b>Key Passes</b> : {{data.statistics[0].passes.key}}
+            <br><b>Passes Accuracy</b> : {{data.statistics[0].passes.accuracy}}
+            <br><b>Dribbles Attempts</b> : {{data.statistics[0].dribbles.attempts}}
+            <br><b>Dribbles Succeed</b> : {{data.statistics[0].dribbles.success}}
+            <br><b>Yellow Cards</b> : {{data.statistics[0].cards.yellow}}
+            <br><b>Red Cards</b> : {{data.statistics[0].cards.red}}
+
+          </td>
+        </tr>
+
+      {%endif%}
 
   </tbody>
 </table>
