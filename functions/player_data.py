@@ -1,6 +1,13 @@
 import http.client
 import json
 from flask import request
+from dotenv import load_dotenv
+import os
+
+def api_key(): 
+    load_dotenv()
+    key = os.environ.get('api_key')
+    return str(key)
 
 def get_league_id(league_name,country):
     
@@ -11,7 +18,7 @@ def get_league_id(league_name,country):
 
     headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
-        'x-rapidapi-key': "45489aa3142e552f28903cd2fb5e92de"
+        'x-rapidapi-key': api_key()
         }
     conn.request("GET", "/leagues?name="+league_name+"&country="+country, headers=headers)
     # conn.request("GET", "/leagues?name=ligue%201&country=france", headers=headers)
@@ -33,7 +40,7 @@ def player(name,season,league_id):
 
     headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
-        'x-rapidapi-key': "45489aa3142e552f28903cd2fb5e92de"
+        'x-rapidapi-key': api_key()
         }
 
     # conn.request("GET", "/players?search=Neymar&season=2019&league=61", headers=headers)

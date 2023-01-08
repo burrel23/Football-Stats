@@ -5,8 +5,11 @@ import urllib
 from flask import Flask, render_template, request, redirect, url_for
 from json2html import json2html
 from functions.player_data import * 
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
+
 
 
 @app.route('/')
@@ -30,7 +33,7 @@ def team_stats():
 
     headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
-        'x-rapidapi-key': "45489aa3142e552f28903cd2fb5e92de"
+        'x-rapidapi-key': api_key()
     }
 
     conn.request("GET", "/teams?name=" + team_name, headers=headers)
@@ -63,21 +66,21 @@ def team_stats():
 
 @app.route('/players', methods = ["POST","GET"])
 def players_stats():
-    try:
-        if request.method == "POST":
-            name = request.form["name"]
-            league_name = request.form["league_name"]
-            season = request.form["season"]
-            country = request.form["country"]
-            league_id = get_league_id(league_name,country)
-            print(league_id)
-            data = player(name,season,league_id)
-            print(data)
-            return render_template("view_player.html",name=name,data=data,season=season)
-        else:
+    # try:
+    if request.method == "POST":
+        name = request.form["name"]
+        league_name = request.form["league_name"]
+        season = request.form["season"]
+        country = request.form["country"]
+        league_id = get_league_id(league_name,country)
+        print(league_id)
+        data = player(name,season,league_id)
+        print(data)
+        return render_template("view_player.html",name=name,data=data,season=season)
+    else:
             return render_template("players.html")
-    except:
-        return render_template("error.html")
+    # except:
+    #     return render_template("error.html")
 
 
 

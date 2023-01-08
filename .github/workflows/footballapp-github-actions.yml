@@ -1,0 +1,35 @@
+name: footballapp-github-actions
+on: 
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 #extraction du dépôt sur l'exécuteur afin d'éxecuter le script
+      - name: Install dependances
+        run: pip install -r requirements.txt
+      - name : Run Tests
+        run: pytest test_app.py
+  
+  build_and_login:
+    runs-on: ubuntu-latest
+    needs: build_and_test 
+    steps:
+      - uses: actions/checkout@v3
+      - name: login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        
+      - name: Build the Docker Image
+        run: |
+          docker build -t footballapp:latest . 
+          docker tag footballapp:latest ${{ secrets.DOCKER_HUB_USERNAME }}/footballapp:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/footballapp:latest
+
